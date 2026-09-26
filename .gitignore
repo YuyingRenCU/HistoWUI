@@ -1,0 +1,17 @@
+# Python and local environments
+__pycache__/
+*.py[cod]
+.venv/
+
+# Generated raster data and GDAL sidecars
+*.tif
+*.tiff
+*.vrt
+*.ovr
+*.aux.xml
+
+# Local editor and operating-system files
+.DS_Store
+.Rhistory
+.idea/
+.vscode/
