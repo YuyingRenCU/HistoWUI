@@ -12,10 +12,10 @@ Class values
 0 : NoData or unclassified
 1 : Intermix WUI
 2 : Interface WUI
-3 : Vegetated, low housing density
-4 : Vegetated, no housing
-5 : Non-vegetated, low housing density
-6 : Non-vegetated, high housing density
+3 : Wildland - Low Building
+4 : Wildland - No Building
+5 : Other Vegetated (Urban, Agriculture, Barren)
+6 : Urban - High Building
 7 : Water or perennial snow/ice
 
 Important
@@ -23,6 +23,10 @@ Important
 The building-density thresholds below apply to the neighborhood used to
 generate the input building-density rasters. Recalculate the thresholds if the
 neighborhood definition changes.
+
+Class names follow the published data legend. Classes 5 and 6 are assigned
+from building counts and local wildland-vegetation coverage; they do not
+require a separate NLCD urban, agriculture, or barren class filter.
 """
 
 from pathlib import Path

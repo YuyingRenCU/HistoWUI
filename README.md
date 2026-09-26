@@ -1,6 +1,8 @@
-# HistoWUI raster mapping scripts
+# HistoWUI-US raster mapping scripts
 
-These scripts create historical and contemporary HistoWUI rasters from prepared building-count and NLCD inputs. `main.py` connects the processing steps and keeps the historical 2020 output separate from the contemporary 2020 output. The repository contains the mapping workflow; it does **not** create the input building inventories, assign construction years, prepare NLCD, or split and align the input rasters.
+These scripts create historical and contemporary HistoWUI-US rasters from prepared building-count and NLCD inputs. `main.py` connects the processing steps and keeps the historical 2020 output separate from the contemporary 2020 output. The repository contains the mapping workflow; it does **not** create the input building inventories, assign construction years, prepare NLCD, or split and align the input rasters.
+
+**HistoWUI-US datasets:** [Browse and download the data on Harvard Dataverse](https://dataverse.harvard.edu/dataverse/HISVUI).
 
 ## Workflow
 
@@ -52,7 +54,7 @@ python main.py \
   --building-parts /data/building_count_per_pixel/ALL_split \
   --nlcd-parts /data/NLCD_conus_split \
   --nlcd-reference /data/NLCD_conus_reextent \
-  --output-root /data/HistoWUI_output \
+  --output-root /data/HistoWUI-US_output \
   --mode both \
   --dry-run
 ```
@@ -66,7 +68,7 @@ python main.py \
   --building-parts /data/building_count_per_pixel/ALL_split \
   --nlcd-parts /data/NLCD_conus_split \
   --nlcd-reference /data/NLCD_conus_reextent \
-  --output-root /data/HistoWUI_output \
+  --output-root /data/HistoWUI-US_output \
   --mode historical \
   --years 1990
 ```
@@ -82,11 +84,13 @@ The WUI classification retains the thresholds in `Step3_identify_WUI.py`: buildi
 | 0 | NoData or unclassified |
 | 1 | Intermix WUI |
 | 2 | Interface WUI |
-| 3 | Vegetated, low building count |
-| 4 | Vegetated, no buildings |
-| 5 | Non-vegetated, low building count |
-| 6 | Non-vegetated, high building count |
+| 3 | Wildland - Low Building |
+| 4 | Wildland - No Building |
+| 5 | Other Vegetated (Urban, Agriculture, Barren) |
+| 6 | Urban - High Building |
 | 7 | Water or perennial snow/ice |
+
+These are the product's class names. Classes 5 and 6 are assigned using the building-count and local wildland-vegetation thresholds above; the code does not separately require an NLCD urban, agriculture, or barren class for either category.
 
 Keep the radius and classification thresholds together when designing a sensitivity analysis. `main.py` fixes them to the baseline settings so a radius change cannot silently reuse the baseline building thresholds.
 

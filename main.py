@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the HistoWUI raster workflow using the scripts in this directory.
+"""Run the HistoWUI-US raster workflow using the scripts in this directory.
 
 This entry point connects the published processing steps without changing
 their classification criteria. Run ``python main.py --help`` for options.
@@ -35,7 +35,7 @@ def parse_years(value):
 
 def command_line():
     parser = argparse.ArgumentParser(
-        description="Create HistoWUI maps from prepared 30 m building and NLCD rasters."
+        description="Create HistoWUI-US maps from prepared 30 m building and NLCD rasters."
     )
     parser.add_argument(
         "--building-parts",
@@ -59,7 +59,7 @@ def command_line():
         "--output-root",
         type=Path,
         required=True,
-        help="Directory for intermediate rasters and final HistoWUI maps.",
+        help="Directory for intermediate rasters and final HistoWUI-US maps.",
     )
     parser.add_argument(
         "--mode",
@@ -150,9 +150,9 @@ def show_plan(args, paths):
     print(f"Vegetation outputs: {paths['vegetation']}")
     print(f"Vegetation buffers: {paths['buffer_root'] / 'wv75_patch5km2_buffer2400m'}")
     if historical:
-        print(f"Historical HistoWUI: {paths['historical']}")
+        print(f"Historical HistoWUI-US: {paths['historical']}")
     if contemporary:
-        print(f"Contemporary HistoWUI: {paths['contemporary']}")
+        print(f"Contemporary HistoWUI-US: {paths['contemporary']}")
     print("Order: building counts and vegetation coverage; vegetation patch buffer; WUI classes")
 
 
@@ -348,7 +348,7 @@ def main():
         configure_wui(wui, args, paths, "contemporary")
         run_wui_year(wui, year, "contemporary", args.overwrite)
 
-    print("HistoWUI workflow complete.")
+    print("HistoWUI-US workflow complete.")
 
 
 if __name__ == "__main__":
