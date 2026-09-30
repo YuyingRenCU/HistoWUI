@@ -175,6 +175,9 @@ def classify_wui(building_density, vegetation_coverage, vegetation_buffer, nlcd)
     # Water and perennial snow/ice override all preceding classes.
     classified[np.isin(nlcd, WATER_AND_ICE_CLASSES)] = 7
 
+    # Set up the nodata extent for the final output rasters
+    classified[(nlcd != NLCD_NODATA)] = 0
+
     return classified
 
 
